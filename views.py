@@ -5,7 +5,7 @@ from school.schoolcalendar.models import *
 from school.ecalendar.utils import *
 
 import datetime
-from calendar import Calendar
+from school.ecalendar.calendar import Calendar
 
 def global_school_callendar(lang=None,year=None,month=None):
     """
