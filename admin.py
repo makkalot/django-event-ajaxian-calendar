@@ -1,4 +1,4 @@
-from school.schoolcalendar.models import *
+from schoolcalendar.models import *
 from django.contrib import admin
 
 class SchoolCalendarCategoryAdmin(admin.ModelAdmin):
