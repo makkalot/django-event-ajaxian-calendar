@@ -1,0 +1,61 @@
+{% load date_dig %}
+{% load lang_manager%}
+{% load comparison%}
+<script type="text/javascript">
+    //load the facebox
+    jQuery(document).ready(function($) {
+            $('a[rel*=facebox]').facebox()
+          }) 
+</script>
+
+<div class="calendar_top_left_img" id="calendar_top_left_img"></div>
+<div class="calendar_top_middle_img" id="calendar_top_middle_img">
+    <a href="#" class="top_bar_links">Daily/Monthly EventCalendar</a>
+</div>
+<div class="calendar_top_right_img" id="calendar_top_right_img"></div>
+<div class="calendar_box" id="calendar_box">
+    <table width="700" height="510"; border="1"   bordercolor="#FF9900"  cellspacing="0" cellpadding="0">
+        <tr>
+            <th colspan="2" class="arrows_class" scope="col">
+            <a id="next_month_arrow" href="#end_calendar" class="arrows_class" onmouseover="MM_swapImage('arrow_right','','/static/images_en/calendar_img/right_arrow_hover.jpg',1)" onmouseout="MM_swapImgRestore()" onClick="$('div.calendar_big_box').hide().load('/{{language}}/calendar/{{next_month.year}}/{{next_month.month}}/').show();">  <img src="/static/images_en/calendar_img/right_arrow.jpg" name="arrow_right" width="44" height="17" border="0" id="arrow_right" /></a>
+           
+            </th>
+            <th colspan="3" class="month_text" scope="col">{{cur_month.month}}/{{cur_month.year}}</th>
+            <th colspan="2" scope="col"> <a id="prev_month_arrow" href="#end_calendar" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('left_arrow','','/static/images_en/calendar_img/left_arrow_hover.jpg',1)" onClick="$('div.calendar_big_box').hide().load('/{{language}}/calendar/{{prev_month.year}}/{{prev_month.month}}/').show();"><img src="/static/images_en/calendar_img/left_arrow.jpg" name="left_arrow" width="44" height="17" border="0" id="left_arrow" /> </a>
+            </th>
+        </tr>
+        
+        <tr>
+            <td class="week_days">Sunday</td>
+            <td class="week_days">Monday</td>
+            <td class="week_days">Tuesday</td>
+            <td class="week_days">Wednesday</td>
+            <td class="week_days">Thursday</td>
+            <td class="week_days">Friday</td>
+            <td class="week_days">Saturday</td>
+        </tr>
+        {% for date_time in calendar_iterator %}
+
+        {% if forloop.counter0|divisibleby:7 %}
+        <tr>
+        {% endif %}
+            {{date_time|is_event}}
+                {% ifequal date_time.month cur_month.month %}
+                <div class="daynumber_div" id="daynumber_div"><span class="date_numbers-text">{{date_time.day}}</span></div>
+                 <div class="events_big_box" id="events_big_box">
+                  {% for event in calendar_events %}
+                        {% if_less_or_equal event.start_date date_time %}
+                            {% if_greater_or_equal event.end_date date_time %}
+                            <div class="event_texts" id="calendar_event_text"><a href="/{{language}}/calendar/event/{{event.id}}/" class="event_texts" rel="facebox" >{% generate_lang_name "title" event %}</a></div>
+                            {% endif_greater_or_equal %}
+                        {% endif_less_or_equal %}
+                  {% endfor %}
+                    </div>
+                {% endifequal %}
+            </td>
+        {% if forloop.counter|divisibleby:7 %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
