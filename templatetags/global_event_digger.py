@@ -1,5 +1,5 @@
 from django import template
-from school.schoolcalendar.models import SchoolCalendarEvent
+from schoolcalendar.models import SchoolCalendarEvent
 from django.db.models import Q
 from django.utils.safestring import mark_safe
 
