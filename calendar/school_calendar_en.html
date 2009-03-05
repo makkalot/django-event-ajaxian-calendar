@@ -1,0 +1,20 @@
+{% extends "main/index_en.html" %}
+
+{% block extra_css_block %}
+<link href="/static/css_en/top_bar.css" rel="stylesheet" type="text/css" />
+<link href="/static/css_en/calendar.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block extra_body %}
+onload="MM_preloadImages('/static/images_en/calendar_img/right_arrow_hover.jpg','/static/images_en/calendar_img/left_arrow_hover.jpg')"
+{%endblock%}
+
+{% block left_sidebar %}
+{% endblock %}
+
+{% block content %}
+<div class="calendar_big_box" id="calendar_box">
+  {% include "calendar/calendar_big_en.html" %}
+</div>
+<a name="end_calendar"/>
+{% endblock %}
