@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import get_language, ugettext_lazy as _
-from school.education.models import Education
 from school.utils.unique_id import slugify
 
 class SchoolCalendarCategory(models.Model):
