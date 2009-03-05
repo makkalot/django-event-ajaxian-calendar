@@ -44,7 +44,7 @@
                   {% for event in calendar_events %}
                         {% if_less_or_equal event.start_date date_time %}
                             {% if_greater_or_equal event.end_date date_time %}
-                            <div class="event_texts" id="calendar_event_text"><a href="/{{language}}/calendar/event/{{event.id}}/" class="event_texts" rel="facebox" >{% generate_lang_name "title" event %}</a></div>
+                            <div class="event_texts" id="calendar_event_text"><a href="/{{language}}/calendar/event/{{event.id}}/" class="event_texts" rel="facebox" >{{ event.english_title|slice:":10" }}...</a></div>
                             {% endif_greater_or_equal %}
                         {% endif_less_or_equal %}
                   {% endfor %}
