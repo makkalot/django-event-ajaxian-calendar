@@ -1,0 +1,12 @@
+*~
+*.db
+*.pyc
+barkdb
+barkw_cache/
+.dotest/
+static/picture_upload/
+static/video_upload/
+static/pdf_upload/
+static/upload/
+static/xml_files/
+.svn
