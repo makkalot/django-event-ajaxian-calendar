@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import get_language, ugettext_lazy as _
-from school.utils.unique_id import slugify
 
 class SchoolCalendarCategory(models.Model):
     """
@@ -16,15 +15,6 @@ class SchoolCalendarCategory(models.Model):
     def __unicode__(self):
         return "%s-%s"%(self.english_name,self.arabic_name)
     
-    def save(self, force_insert=False, force_update=False):
-        """
-        Some magic
-        """
-        if not self.slug:
-            self.slug = slugify(self.english_name, instance=self)
-
-        super(SchoolCalendarCategory, self).save(force_insert=force_insert, force_update=force_update)
-
 
 class SchoolCalendarEvent(models.Model):
     """
